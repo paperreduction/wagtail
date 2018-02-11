@@ -12,10 +12,8 @@ from wagtail.admin.rich_text import (
 from wagtail.admin.rich_text.converters.contentstate import Link
 from wagtail.admin.rich_text.converters.editor_html import LinkTypeRule, WhitelistRule
 from wagtail.admin.rich_text.converters.html_to_contentstate import (
-    BlockElementHandler, ExternalLinkElementHandler, HorizontalRuleHandler, InlineStyleElementHandler,
-    ListElementHandler, ListItemElementHandler, PageLinkElementHandler
-)
-import wagtail.admin.rich_text.editors.draftail.features as draftail_features
+    BlockElementHandler, ExternalLinkElementHandler, HorizontalRuleHandler, LineBreakHandler,
+    InlineStyleElementHandler, ListElementHandler, ListItemElementHandler, PageLinkElementHandler)
 from wagtail.admin.search import SearchArea
 from wagtail.admin.utils import user_has_any_page_permission
 from wagtail.admin.viewsets import viewsets
@@ -272,7 +270,27 @@ def register_core_features(features):
     })
 
     features.register_editor_plugin(
+<<<<<<< HEAD
         'draftail', 'h1', draftail_features.BlockFeature({'label': 'H1', 'type': BLOCK_TYPES.HEADER_ONE})
+=======
+        'draftail', 'br', draftail_features.BooleanFeature('enableLineBreak')
+    )
+    features.register_converter_rule('contentstate', 'br', {
+        'from_database_format': {
+            'br': LineBreakHandler(),
+        },
+        'to_database_format': {
+            'entity_decorators': {'LINE_BREAK': lambda props: DOM.create_element('br')}
+        }
+    })
+
+    features.register_editor_plugin(
+        'draftail', 'h1', draftail_features.BlockFeature({
+            'label': 'H1',
+            'type': 'header-one',
+            'description': ugettext('Heading {level}').format(level=1),
+        })
+>>>>>>> 95bd5b3... Added LineBreakHandler to resolve missing line breaks
     )
     features.register_converter_rule('contentstate', 'h1', {
         'from_database_format': {
