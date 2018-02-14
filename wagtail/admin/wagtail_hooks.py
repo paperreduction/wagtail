@@ -15,6 +15,7 @@ from wagtail.admin.rich_text.converters.html_to_contentstate import (
     BlockElementHandler, ExternalLinkElementHandler, HorizontalRuleHandler,
     InlineStyleElementHandler, LineBreakHandler, ListElementHandler, ListItemElementHandler,
     PageLinkElementHandler)
+import wagtail.admin.rich_text.editors.draftail.features as draftail_features
 from wagtail.admin.search import SearchArea
 from wagtail.admin.utils import user_has_any_page_permission
 from wagtail.admin.viewsets import viewsets
