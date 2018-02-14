@@ -287,7 +287,7 @@ def register_core_features(features):
         'draftail', 'h1', draftail_features.BlockFeature({
             'label': 'H1',
             'type': 'header-one',
-            'description': ugettext('Heading {level}').format(level=1),
+            'description': _('Heading {level}').format(level=1),
         })
     )
 
