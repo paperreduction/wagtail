@@ -272,9 +272,6 @@ def register_core_features(features):
     })
 
     features.register_editor_plugin(
-<<<<<<< HEAD
-        'draftail', 'h1', draftail_features.BlockFeature({'label': 'H1', 'type': BLOCK_TYPES.HEADER_ONE})
-=======
         'draftail', 'br', draftail_features.BooleanFeature('enableLineBreak')
     )
     features.register_converter_rule('contentstate', 'br', {
@@ -292,7 +289,10 @@ def register_core_features(features):
             'type': 'header-one',
             'description': ugettext('Heading {level}').format(level=1),
         })
->>>>>>> 95bd5b3... Added LineBreakHandler to resolve missing line breaks
+    )
+
+    features.register_editor_plugin(
+        'draftail', 'h1', draftail_features.BlockFeature({'label': 'H1', 'type': BLOCK_TYPES.HEADER_ONE})
     )
     features.register_converter_rule('contentstate', 'h1', {
         'from_database_format': {
